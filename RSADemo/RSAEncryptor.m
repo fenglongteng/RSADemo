@@ -154,24 +154,37 @@
 }
 
 -(NSData*) rsaDecryptData:(NSData*)data {
+    SecKeyRef key = [self getPublicKey];
+    size_t blockSize = SecKeyGetBlockSize(key);
+    size_t blockCount = (size_t)ceil([data length] / (double)blockSize);
+    NSMutableData *encryptedData = [[NSMutableData alloc] init] ;
+    for (int i=0; i<blockCount; i++) {
+        int bufferSize = MIN(blockSize,[data length] - i * blockSize);
+        NSData *buffer = [data subdataWithRange:NSMakeRange(i * blockSize, bufferSize)];
+        NSData *itemData = [self deCode:buffer];// 分段解密
+        if (itemData.length>0) {
+            [encryptedData appendData:itemData];
+        }
+        
+    }
+    return encryptedData;
+}
+
+// 分段解密
+-(NSData*)deCode:(NSData*)data{
     SecKeyRef key = [self getPrivateKey];
     size_t cipherLen = [data length];
     void *cipher = malloc(cipherLen);
     [data getBytes:cipher length:cipherLen];
-    size_t plainLen = SecKeyGetBlockSize(key) - 12;
+    size_t plainLen = SecKeyGetBlockSize(key) - 11;
     void *plain = malloc(plainLen);
     OSStatus status = SecKeyDecrypt(key, kSecPaddingPKCS1, cipher, cipherLen, plain, &plainLen);
-    
     if (status != noErr) {
         return nil;
     }
-    
     NSData *decryptedData = [[NSData alloc] initWithBytes:(const void *)plain length:plainLen];
-    
     return decryptedData;
 }
-
-
 
 
 

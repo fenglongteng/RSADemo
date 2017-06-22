@@ -24,11 +24,17 @@
     [rsaEncryptor loadPrivateKeyFromFile: privateKeyPath password:@"www.57.com"];    // 这里，请换成你生成p12时的密码
     //字符串RSA加密
     NSString *string = @"ios RSA加密";
-    NSString* restrinBASE64STRING = [rsaEncryptor rsaEncryptString:string];
-    NSLog(@"Encrypted==== %@", restrinBASE64STRING);       // 请把这段字符串Copy到JAVA这边main()里做测试
+    for (int i = 0; i<1000; i++) {
+       string = [string stringByAppendingString:@"123456"];
+    }
+    NSLog(@"ENcrypted====%@=====%ld", string,string.length);
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* restrinBASE64STRING = [rsaEncryptor rsaEncryptData:data];
+   // NSLog(@"Encrypted==== %@", restrinBASE64STRING);       // 请把这段字符串Copy到JAVA这边main()里做测试
     //字符串RSA解密
-    NSString* decryptString = [rsaEncryptor rsaDecryptString: restrinBASE64STRING];
-    NSLog(@"Decrypted==== %@", decryptString);
+    NSData* decryptString = [rsaEncryptor rsaDecryptData: restrinBASE64STRING];
+    NSString *str = [[NSString alloc]initWithData:decryptString encoding:NSUTF8StringEncoding];
+    NSLog(@"Decrypted====%@=====%ld", str,str.length);
     
     
     // System.out.println the encrypt string from Java , and paste it here
