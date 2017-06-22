@@ -157,17 +157,17 @@
     SecKeyRef key = [self getPublicKey];
     size_t blockSize = SecKeyGetBlockSize(key);
     size_t blockCount = (size_t)ceil([data length] / (double)blockSize);
-    NSMutableData *encryptedData = [[NSMutableData alloc] init] ;
+    NSMutableData *decryptedData = [[NSMutableData alloc] init] ;
     for (int i=0; i<blockCount; i++) {
         int bufferSize = MIN(blockSize,[data length] - i * blockSize);
         NSData *buffer = [data subdataWithRange:NSMakeRange(i * blockSize, bufferSize)];
         NSData *itemData = [self deCode:buffer];// 分段解密
         if (itemData.length>0) {
-            [encryptedData appendData:itemData];
+            [decryptedData appendData:itemData];
         }
         
     }
-    return encryptedData;
+    return decryptedData;
 }
 
 // 分段解密
@@ -185,10 +185,6 @@
     NSData *decryptedData = [[NSData alloc] initWithBytes:(const void *)plain length:plainLen];
     return decryptedData;
 }
-
-
-
-
 
 
 #pragma mark - Class Methods
