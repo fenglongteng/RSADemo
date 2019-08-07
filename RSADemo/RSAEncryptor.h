@@ -19,15 +19,15 @@
 
 
 
-
+//公钥加密 私钥解密
 -(NSString*) rsaEncryptString:(NSString*)string;
 -(NSData*) rsaEncryptData:(NSData*)data ;
 
 -(NSString*) rsaDecryptString:(NSString*)string;
 -(NSData*) rsaDecryptData:(NSData*)data;
 
-
-
+//openssl 可做 私钥加密 公钥解密 但是一般不建议使用私钥加密
+//参考 https://www.jianshu.com/p/d80170efee31
 
 
 #pragma mark - Class Methods

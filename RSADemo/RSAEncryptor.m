@@ -141,18 +141,16 @@
 }
 
 
-
-
 #pragma mark - Decrypt
 
 -(NSString*) rsaDecryptString:(NSString*)string {
-    NSData *data = [NSData dataWithBase64EncodedString:string];
-//    NSData* data = [NSData dataFromBase64String: string];
-    NSData* decryptData = [self rsaDecryptData: data];
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:string options:0];
+    NSData* decryptData = [self rsaDecryptData: decodedData];
     NSString* result = [[NSString alloc] initWithData: decryptData encoding:NSUTF8StringEncoding];
     return result;
 }
 
+//私钥解密
 -(NSData*) rsaDecryptData:(NSData*)data {
     SecKeyRef key = [self getPublicKey];
     size_t blockSize = SecKeyGetBlockSize(key);

@@ -18,10 +18,10 @@
     [super viewDidLoad];
     //配置秘钥
     RSAEncryptor* rsaEncryptor = [[RSAEncryptor alloc] init];
-    NSString* publicKeyPath = [[NSBundle mainBundle] pathForResource:@"public_key" ofType:@"der"];
-    NSString* privateKeyPath = [[NSBundle mainBundle] pathForResource:@"private_key" ofType:@"p12"];
+    NSString* publicKeyPath = [[NSBundle mainBundle] pathForResource:@"perfactpay" ofType:@"cer"];
+    NSString* privateKeyPath = [[NSBundle mainBundle] pathForResource:@"perfactpay" ofType:@"pfx"];
     [rsaEncryptor loadPublicKeyFromFile: publicKeyPath];
-    [rsaEncryptor loadPrivateKeyFromFile: privateKeyPath password:@"www.57.com"];    // 这里，请换成你生成p12时的密码
+    [rsaEncryptor loadPrivateKeyFromFile: privateKeyPath password:@"123456"];    // 这里，请换成你生成p12时的密码
     //字符串RSA加密
     NSString *string = @"ios RSA加密";
     for (int i = 0; i<1000; i++) {
@@ -35,17 +35,16 @@
     NSData* decryptString = [rsaEncryptor rsaDecryptData: restrinBASE64STRING];
     NSString *str = [[NSString alloc]initWithData:decryptString encoding:NSUTF8StringEncoding];
     NSLog(@"Decrypted====%@=====%ld", str,str.length);
+    if([string isEqualToString:str]){
+        NSLog(@"加密解密前后一致");
+    }
     
     
     // System.out.println the encrypt string from Java , and paste it here
     // 这里请换成你的JAVA这边产生的加密的Base64 Encode的字符串
-            NSString* rsaEncrypyBase64 = [NSString stringWithFormat:@"%@\r%@\r%@",
-                                          @"ZNKCVpFYd4Oi2pecLhDXHh+8kWltUMLdBIBDeTvU5kWpTQ8cA1Y+7wKO3d/M8bhULYf1FhWt80Cg",
-                                          @"7e73SV5r+wSlgGWBvTIxqgTWFS4ELGzsEJpVVSlK1oXF0N2mugOURUILjeQrwn1QTcVdXXTMQ0wj",
-                                          @"50GNwnHbAwyLvsY5EUY="];
-    
-            NSString* resultString = [rsaEncryptor rsaDecryptString: rsaEncrypyBase64];
-            NSLog(@"Decrypt Java RSA String=== %@", resultString);
+    NSString* rsaEncrypyBase64 = @"5bed55Sw5Zyo5ZOq6YeM5ZWK";
+    NSString* resultString = [rsaEncryptor rsaDecryptString: rsaEncrypyBase64];
+    NSLog(@"Decrypt Java RSA String=== %@", resultString);
    //  Do any additional setup after loading the view, typically from a nib.
 }
 

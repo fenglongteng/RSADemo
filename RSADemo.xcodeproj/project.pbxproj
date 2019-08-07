@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C96DFF1322FABC53005B25D9 /* perfactpay.cer in Resources */ = {isa = PBXBuildFile; fileRef = C96DFF1122FABC53005B25D9 /* perfactpay.cer */; };
+		C96DFF1422FABC53005B25D9 /* perfactpay.pfx in Resources */ = {isa = PBXBuildFile; fileRef = C96DFF1222FABC53005B25D9 /* perfactpay.pfx */; };
 		C9A323D71CF48FF6003CEB90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A323D61CF48FF6003CEB90 /* main.m */; };
 		C9A323DA1CF48FF6003CEB90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A323D91CF48FF6003CEB90 /* AppDelegate.m */; };
 		C9A323DD1CF48FF6003CEB90 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A323DC1CF48FF6003CEB90 /* ViewController.m */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		1B06B4A7935429282BCC12FA /* libPods-RSADemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RSADemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64E583E7D8DAB78D58A9530A /* Pods-RSADemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSADemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSADemo/Pods-RSADemo.release.xcconfig"; sourceTree = "<group>"; };
+		C96DFF1122FABC53005B25D9 /* perfactpay.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = perfactpay.cer; sourceTree = "<group>"; };
+		C96DFF1222FABC53005B25D9 /* perfactpay.pfx */ = {isa = PBXFileReference; lastKnownFileType = file; path = perfactpay.pfx; sourceTree = "<group>"; };
 		C9A323D21CF48FF6003CEB90 /* RSADemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSADemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A323D61CF48FF6003CEB90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9A323D81CF48FF6003CEB90 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -70,6 +74,15 @@
 				1B06B4A7935429282BCC12FA /* libPods-RSADemo.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C96DFF1022FABC53005B25D9 /* KeyFile */ = {
+			isa = PBXGroup;
+			children = (
+				C96DFF1122FABC53005B25D9 /* perfactpay.cer */,
+				C96DFF1222FABC53005B25D9 /* perfactpay.pfx */,
+			);
+			path = KeyFile;
 			sourceTree = "<group>";
 		};
 		C9A323C91CF48FF6003CEB90 = {
@@ -120,6 +133,7 @@
 		C9A323EE1CF497E7003CEB90 /* 秘钥文件 */ = {
 			isa = PBXGroup;
 			children = (
+				C96DFF1022FABC53005B25D9 /* KeyFile */,
 				C9A323EF1CF4982C003CEB90 /* private_key.p12 */,
 				C9A323F01CF4982C003CEB90 /* public_key.der */,
 			);
@@ -169,6 +183,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -190,8 +205,10 @@
 				C9A323E51CF48FF6003CEB90 /* LaunchScreen.storyboard in Resources */,
 				C9A323E21CF48FF6003CEB90 /* Assets.xcassets in Resources */,
 				C9A323E01CF48FF6003CEB90 /* Main.storyboard in Resources */,
+				C96DFF1322FABC53005B25D9 /* perfactpay.cer in Resources */,
 				C9A323F11CF4982C003CEB90 /* private_key.p12 in Resources */,
 				C9A323F21CF4982C003CEB90 /* public_key.der in Resources */,
+				C96DFF1422FABC53005B25D9 /* perfactpay.pfx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
